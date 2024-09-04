@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="style.css" />
+    <title>뽀모도로</title>
+  </head>
+  <body>
+    <main class="pomodoro">
+      <div class="pomodoro-timer-container">
+        <svg class="pomodoro-progress">
+          <circle class="pomodoro-progress-background" cx="302" cy="245" r="240"></circle>
+          <circle class="pomodoro-progress-bar" cx="355" cy="302" r="240"></circle>
+        </svg>
+        <div class="timer">
+          <div class="min">25</div>
+          <div class="divider">:</div>
+          <div class="sec">00</div>
+        </div>
+        <div class="pomodoro-cycle-group">
+          <div class="pomodoro-cycle"></div>
+          <div class="pomodoro-cycle"></div>
+          <div class="pomodoro-cycle"></div>
+          <div class="pomodoro-cycle"></div>
+        </div> 
+      </div>
+      
+      <div class="pomodoro-button-group">
+        <button class="pomodoro-button" type="button">뽀모도로 시작</button>
+      </div>
+      <div class="transition-button-group">
+        <button class="transition-focus-button">집중 모드로 전환</button>
+        <button class="transition-break-button">휴식 모드로 전환</button>
+      </div>
+      <div class="pomodoro-setting-container">
+        <div class="pomodoro-setting">
+          <p class="pomodoro-setting-title">집중 시간</p>
+          <input class="pomodoro-setting-input focus-time-input" type="number" value="25" />
+          <span>분</span>
+        </div>
+        <div class="pomodoro-setting">
+          <p class="pomodoro-setting-title">짧은 휴식 시간</p>
+          <input class="pomodoro-setting-input short-break-time-input" type="number" value="5" />
+          <span>분</span>
+        </div>
+        <div class="pomodoro-setting">
+          <p class="pomodoro-setting-title">긴 휴식 시간</p>
+          <input class="pomodoro-setting-input long-break-time-input" type="number" value="15" />
+          <span>분</span>
+        </div>
+        <div class="pomodoro-setting">
+          <p class="pomodoro-setting-title">긴 휴식 간격</p>
+          <input class="pomodoro-setting-input long-break-interval-input" type="number" value="4" />
+        </div>
+        
+        <div class="pomodoro-option-container pomodoro-option">
+          <span class="material-symbols-outlined pomodoro-option" aria-label="타이머 설정">
+            settings
+          </span>
+        </div>
+      </div>
+
+      <section class="pomodoro-option-modal" role="dialog" aria-hidden="false">
+        <div class="modal-header">
+          <h2 class="modal-title">설정</h2>
+          <button class="modal-close-button" aria-label="모달창을 닫는 버튼">
+            <img src="assets/close.svg" alt=""/>
+          </button>
+        </div>
+        <hr class="modal-divider">
+        <div class="toggle-container">
+          <span class="toggle-label">자동으로 휴식 시작</span>
+          <input class="toggle-slider" role="switch" type="checkbox">
+        </div>
+        <div class="toggle-container">
+          <span class="toggle-label">자동으로 다음 뽀모도로 시작</span>
+          <input class="toggle-slider" role="switch" type="checkbox">
+        </div>
+        <!-- 
+        <div class="sound-option">
+          <p>사운드</p>
+        </div>
+      -->
+      </section>
+    </main>
+
+    <main class="todo">
+      <form class="todo-form">
+        <input type="text" placeholder="할 일을 입력하세요." />
+        <button class="todo-button" type="submit">등록</button>
+      </form>
+      <p class="alert-text">입력창에 텍스트를 입력해주세요.</p>
+      
+      <ul></ul>      
+    </main>
+  </body>
+  <script src="./app.js"></script>
+</html>

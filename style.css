@@ -1,0 +1,376 @@
+/* Reset */
+ul,
+ol,
+li,
+dl,
+dt,
+dd {
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+}
+
+button,
+input,
+textarea {
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+button:focus,
+button:active,
+input:focus,
+input:active {
+  outline: none;
+  box-shadow: none;
+}
+
+/* input number 화살표 제거 */
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+}
+
+/* 페이지 전체 설정 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 205px 40px;
+  font-family: "Noto Sans KR", sans-serif;
+  letter-spacing: -0.02em;
+  background-color: #ffffff;
+}
+
+/* 뽀모도로 */
+.pomodoro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 100px;
+  width: auto;
+  height: auto;
+}
+
+.pomodoro-timer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin-bottom: 165px;
+}
+
+/* progress bar */
+.pomodoro-progress {
+  position: absolute;
+  top: -150px;
+  z-index: -1;
+  width: 600px;
+  height: 600px;
+}
+
+.pomodoro-progress-background {
+  fill: none;
+  stroke: #d3d3d3;
+  stroke-width: 9;
+}
+
+.pomodoro-progress-bar {
+  fill: none;
+  stroke: #E74C3C;
+  stroke-width: 9;
+  stroke-dasharray: 1507.2;
+  stroke-dashoffset: 1507.2;
+  opacity: 0;
+  animation: progress 2s ease-in-out infinite;
+  transform-origin: center;
+  transform: rotate(-90deg);
+}
+
+
+/* 타이머 숫자 */
+.timer {
+  display: flex;
+  font-family: "Reddit Mono", monospace;
+  font-size: 145px;
+  font-weight: 250;
+  letter-spacing: -0.06em;
+  color: #202020;
+}
+
+.divider {
+  position: relative;
+  bottom: 3px;
+  padding: 0 20px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+}
+
+/* 뽀모도로 사이클 완료 */
+.pomodoro-cycle-group {
+  display: flex;
+  justify-content: center;
+  column-gap: 10px;
+}
+
+.pomodoro-cycle {
+  width: 13px;
+  height: 13px;
+  border-radius: 50px;
+  background-color: #24242400;
+  border: 1.5px solid #242424;
+}
+
+/* 뽀모도로 실행/중지 버튼 */
+.pomodoro-button-group {
+  display: flex;
+  column-gap: 15px;
+}
+
+.pomodoro-button {
+  padding: 20px 60px;
+  margin-bottom: 50px;
+  border-radius: 50px;
+  white-space: nowrap;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #fff;
+  background-color: #e74c3c;
+}
+
+.pomodoro-button:hover {
+  background-color: #c0392b;
+}
+
+/* pomodoro setting */
+.pomodoro-setting-container {
+  display: flex;  
+}
+
+.pomodoro-setting {
+  width: 140px;
+  height: 100px;
+  padding: 20px 15px;
+  text-align: center;
+  border: 1px solid #d1d1d1;
+  border-width: 1px 1px 1px 0;
+}
+
+.pomodoro-setting:nth-child(1) {
+  border-width: 1px;
+}
+
+/*
+.pomodoro-setting {
+  width: 200px;
+  height: 95px;
+  padding: 20px 25px;
+  border-radius: 25px;
+  background-color: #ebebeb;
+}
+*/
+
+.pomodoro-setting-title {
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+
+.pomodoro-setting:nth-child(1) {
+  color: #e94533;
+}
+
+.pomodoro-setting:nth-child(2) {
+  color: #2ECC71;
+}
+
+.pomodoro-setting:nth-child(3) {
+  color: #209ad7;
+}
+
+.pomodoro-setting input {
+  width: 30px;
+  text-align: center;
+  font-family: "Pretendard";
+  font-size: 22px;
+  font-weight: 700;
+  border: none;
+  background-color: #00000000;
+}
+
+.pomodoro-setting span {
+  position: relative;
+  bottom: 2px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #b0b0b0;
+} 
+
+/* 뽀모도로 옵션 설정 모달 */
+.pomodoro-option span {
+  margin: 6px 15px;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24;
+  color: #9e9a9a;
+  cursor: pointer;
+}
+
+.pomodoro-option-modal {
+  display: flex; 
+  display: none; 
+  flex-direction: column; 
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 350px;
+  height: 500px;
+  padding: 25px; 
+  border-radius: 14px;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.079);
+  background-color: #fff;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-title {
+  height: 1.2em;
+  line-height: 1.2em;
+}
+
+.modal-header .modal-close-button {
+  width: 24px;
+  height: 24px;
+  background-color: #ffffff00;
+}
+
+.modal-divider {
+  margin: 20px 0;
+  flex-shrink: 0;
+  border-width: 0px 0px thin;
+  border-style: solid;
+  border-color: rgb(213, 213, 213);
+}
+
+.toggle-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.toggle-label {
+  font-size: 16px;
+}
+
+.toggle-slider {
+  appearance: none;  
+  position: relative;
+  width: 60px;
+  height: 33px;
+  border-radius: 30px;
+  background-color: #d3d3d3;
+  transition: background-color 170ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.toggle-slider::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background-color: #fff;
+  transition: left 170ms cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: rgba(0, 0, 0, 0.069) 0px 1px 1px 0px, rgba(0, 0, 0, 0.193) 0px 1px 3px 0px;
+}
+
+.toggle-slider:checked {
+  background-color: #ff5845;
+}
+
+.toggle-slider:checked::after {
+  left:calc(100% - 30px);
+}
+
+
+/* TO-DO */
+.todo-form {
+  width: 100%;
+  display: flex;
+  column-gap: 15px;
+}
+
+.todo-form input {
+  width: 100%;
+  padding: 0 15px;
+  border-radius: 8px;
+  border: 1px solid #d3d3d3;
+  outline: none;
+}
+
+.todo-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 35px;
+  border-radius: 8px;
+  background-color: #3498db;
+  color: white;
+}
+
+.todo-button:hover {
+  background-color: #2980b9;
+}
+
+ul {
+  list-style: none;
+  margin: 20px 10px;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dotted lightgray;
+  padding-bottom: 7px;
+  margin-bottom: 7px;
+}
+
+.alert-text {
+  display: none;
+  padding: 7px;
+  font-size: 12px;
+  color: #2980b9;
+}
