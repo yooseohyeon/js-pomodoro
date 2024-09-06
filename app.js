@@ -3,11 +3,10 @@ const sec = document.querySelector('.sec');
 const pomodoroBtnGroup = document.querySelector('.pomodoro-button-group');
 const pomodoroBtn = document.querySelector('.pomodoro-button:first-of-type');
 const progressCircle = document.querySelector('.pomodoro-progress-bar'); 
-// const pomodoroCycleGroup = document.querySelectorAll('.pomodoro-cycle');
 const pomodoroCycleGroup = document.getElementsByClassName("pomodoro-cycle");
-console.log(pomodoroCycleGroup);
 
 let timerInterval = null;
+
 let pomodoroEndBtn = null;
 let breakBtn = null;
 let longBreakBtn = null;
@@ -17,11 +16,10 @@ let shortBreakTime = 5;
 let longBreakTime = 15;
 let longBreakInterval = 4;
 
-let autoBreakStart = false;
-let autoNextPomodoroStart = false;
+let autoBreakStart = JSON.parse(localStorage.getItem('autoBreakStart')); 
+let autoNextPomodoroStart = JSON.parse(localStorage.getItem('autoNextPomodoroStart')); 
 
 let completedCycles = 0;
-
 
 
 function updateTimerDisplay(minutes, seconds) {
@@ -54,12 +52,13 @@ function updateProgressBar(currentTime) {
 function focusTimer() {
   let minutes = parseInt(min.innerText, 10);
   let seconds = parseInt(sec.innerText, 10);
-
+  updateTimerDisplay(minutes, seconds);
+  
   if (minutes === 0 && seconds === 0) {
     clearInterval(timerInterval);
     transitionToShortBreak();
     completedCycles++;
-    displayCompletedcycle();
+    pomodoroCycleGroup[completedCycles - 1].style.backgroundColor = '#242424';
     return;
   }
 
@@ -95,6 +94,7 @@ function handleStart() {
   pomodoroBtn.style.backgroundColor = '#747474';
 
   progressCircle.style.display = 'flex';
+  progressCircle.style.stroke = '#E74C3C';
   totalDuration = focusTime * 60; 
   initializeProgressBar();
 }
@@ -131,7 +131,7 @@ function handleEnd() {
   if (pomodoroEndBtn) pomodoroEndBtn.style.display = 'none';
   if (breakBtn) breakBtn.style.display = 'none';
   if (longBreakBtn) longBreakBtn.style.display = 'none';
-  if (progressCircle.style.display = 'flex') progressCircle.style.display = 'none';
+  if (progressCircle.style.display === 'flex') progressCircle.style.display = 'none';
 }
 
 
@@ -141,9 +141,8 @@ function breakTimer() {
   let seconds = parseInt(sec.innerText, 10);
 
   if (minutes === 0 && seconds === 0) {
-    handleBreakEnd();
+    handleEnd();
     if (autoNextPomodoroStart) handleStart();
-    // if (longBreakInterval === pomodoroCycleGroup.length) transitionToLongBreak();
     if (longBreakInterval === completedCycles) transitionToLongBreak();
     return;
   }
@@ -156,6 +155,9 @@ function breakTimer() {
   }
 
   updateTimerDisplay(minutes, seconds);
+
+  const currentTime = minutes * 60 + seconds;
+  updateProgressBar(currentTime);
 }
 
 // 휴식 버튼 생성
@@ -171,9 +173,10 @@ function createShortBreakButton() {
 // 휴식 타이머 관련 동작
 function transitionToShortBreak() {
   !breakBtn ? breakBtn = createShortBreakButton() : breakBtn.style.display = 'inline-block';
-
   pomodoroBtn.style.display = 'none';
-  progressCircle.style.display = 'none';
+
+  progressCircle.style.display = 'flex';
+  progressCircle.style.stroke = '#2ECC71';
 
   if (autoBreakStart) {
     handleBreakStart();
@@ -190,11 +193,7 @@ function handleBreakStart() {
   timerInterval = setInterval(breakTimer, 1000);
   updateTimerDisplay(shortBreakTime - 1, 59);
   breakBtn.innerText = '휴식 종료';
-}
-
-function handleBreakEnd() {
-  handleEnd();
-  pomodoroBtn.style.display = 'inline-block';
+  initializeProgressBar();
 }
 
 // 긴 휴식
@@ -203,7 +202,8 @@ function longBreakTimer() {
   let seconds = parseInt(sec.innerText, 10);
 
   if (minutes === 0 && seconds === 0) {
-    handleBreakEnd();
+    handleEnd();
+    completedCycles = 0;
     [...pomodoroCycleGroup].forEach(pomodoroCycle => pomodoroCycle.style.backgroundColor = '#24242400');
     return;
   }
@@ -216,6 +216,9 @@ function longBreakTimer() {
   }
 
   updateTimerDisplay(minutes, seconds);
+
+  const currentTime = minutes * 60 + seconds;
+  updateProgressBar(currentTime);
 }
 
 function createLongBreakButton() {
@@ -232,7 +235,9 @@ function transitionToLongBreak() {
 
   pomodoroBtn.style.display = 'none';
   breakBtn.style.display = 'none';
-  progressCircle.style.display = 'none';
+
+  progressCircle.style.display = 'flex';
+  progressCircle.style.stroke = '#209ad7';
 
   clearInterval(timerInterval);
   updateTimerDisplay(longBreakTime - 1, 59);
@@ -260,10 +265,11 @@ function toggleTimer(event) {
       handleBreakStart();
       break;
     case '휴식 종료':
-      handleBreakEnd();
+      handleEnd();
       break;
     case '긴 휴식 종료':
-      handleBreakEnd();
+      handleEnd();
+      completedCycles = 0;
       [...pomodoroCycleGroup].forEach(pomodoroCycle => pomodoroCycle.style.backgroundColor = '#24242400');
       break;
   }
@@ -271,22 +277,18 @@ function toggleTimer(event) {
 
 pomodoroBtnGroup.addEventListener('click', toggleTimer);
 
-// 완료된 사이클 시각적 표시
-function displayCompletedcycle() {
-  if (completedCycles) pomodoroCycleGroup[completedCycles - 1].style.backgroundColor = '#242424';
-}
 
 function subDisplayCycle() {
   let subCyclePcs = pomodoroCycleGroup.length - longBreakInterval;
 
-  for (let i = pomodoroCycleGroup.length - 1; i >= 1 && subCyclePcs > 0; i--) {
-    pomodoroCycleGroup[i].remove();
+  for (let i = 0; i < subCyclePcs; i++) {
+    pomodoroCycleGroup[pomodoroCycleGroup.length-1].remove();
   }
 }
 
 function addDisplayCycle() {
   let addCyclePcs = longBreakInterval - pomodoroCycleGroup.length;
-  
+
   for (let i = 0; i < addCyclePcs ; i++) {
     const newPomodoroCycle = document.createElement("div");
     newPomodoroCycle.className = 'pomodoro-cycle';
@@ -294,20 +296,13 @@ function addDisplayCycle() {
   }
 }
 
-// 화면 전환 버튼
-document.querySelector('.transition-focus-button').addEventListener('click', handleEnd);
-document.querySelector('.transition-break-button').addEventListener('click', function() {
-  transitionToShortBreak();
-});
-
-
-
 /* 뽀모도로 시간 설정 입력창 */
 function syncTimerWithInputs() {
   focusTime = parseInt(document.querySelector('.focus-time-input').value, 10);
   shortBreakTime = parseInt(document.querySelector('.short-break-time-input').value, 10);
   longBreakTime = parseInt(document.querySelector('.long-break-time-input').value, 10);
   longBreakInterval = parseInt(document.querySelector('.long-break-interval-input').value, 10);
+
   if (longBreakInterval < pomodoroCycleGroup.length) {
     subDisplayCycle();
   } else if (longBreakInterval > pomodoroCycleGroup.length) {
@@ -331,11 +326,8 @@ function openModal() {
   modal.style.display = 'flex';
   modal.setAttribute('aria-hidden', 'false');
 
-  let asynFirstChecked = JSON.parse(localStorage.getItem('autoBreakStart')); 
-  asynFirstChecked == true ? toggles[0].checked = true : toggles[0].checked = false;
-  
-  let asynSecondChecked = JSON.parse(localStorage.getItem('autoNextPomodoroStart')); 
-  asynSecondChecked == true ? toggles[1].checked = true : toggles[1].checked = false;
+  autoBreakStart == true ? toggles[0].checked = true : toggles[0].checked = false;
+  autoNextPomodoroStart == true ? toggles[1].checked = true : toggles[1].checked = false;
 }
 
 function closeModal() {
@@ -344,11 +336,13 @@ function closeModal() {
 }
 
 function getToggleChecked() {
-  autoBreakStart = toggles[0].checked;
-  autoNextPomodoroStart = toggles[1].checked;
-  localStorage.setItem('autoBreakStart', autoBreakStart);
-  localStorage.setItem('autoNextPomodoroStart', autoNextPomodoroStart);
+  localStorage.setItem('autoBreakStart', toggles[0].checked);
+  localStorage.setItem('autoNextPomodoroStart', toggles[1].checked);
+
+  autoBreakStart = JSON.parse(localStorage.getItem('autoBreakStart')); 
+  autoNextPomodoroStart = JSON.parse(localStorage.getItem('autoNextPomodoroStart')); 
 }
+
 
 openModalBtn.addEventListener('click', openModal);
 closeModalBtn.addEventListener('click', closeModal);
@@ -356,8 +350,8 @@ toggles.forEach(toggle => toggle.addEventListener('click', getToggleChecked));
 
 
 // TODO
-const form = document.querySelector('form');
-const input = document.querySelector('input');
+const form = document.querySelector('.todo-form');
+const input = document.querySelector('.todo-input');
 const ul = document.querySelector('ul');
 const alertText = document.querySelector('.alert-text');
 
@@ -381,6 +375,8 @@ const addItem = (todo) => {
     const span = document.createElement('span');
 
     span.innerText = todo.text;
+    alertText.style.display = 'none';
+    li.className = 'todo-li';
     button.innerText = '삭제';
     button.className = 'todo-button';
     button.addEventListener('click', delItem);
@@ -391,9 +387,9 @@ const addItem = (todo) => {
   }
 };
 
-// submit 이벤트 발생 시 자동으로 새로고침되는 것을 방지하는 코드
+
 const handler = (event) => {
-  event.preventDefault();
+  event.preventDefault(); 
 
     const todo = {
       id: Date.now(),
@@ -405,7 +401,7 @@ const handler = (event) => {
   save();
 
   input.value = '';
-};
+}
 
 const init = () => {
   let userTodos = JSON.parse(localStorage.getItem('todos'));
@@ -415,6 +411,13 @@ const init = () => {
     todos = userTodos;
   }
 }
+
+document.querySelector('.todo-button').addEventListener('click', function() {
+  input.value !== '' ?  alertText.style.display = 'none' :  alertText.style.display = 'block';
+});
+input.addEventListener('input', function(event) {
+  if(event.target.value !== '') alertText.style.display = 'none';
+})
 
 init();
 form.addEventListener('submit', handler);

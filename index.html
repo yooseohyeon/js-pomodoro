@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon.ico">
     <title>뽀모도로</title>
   </head>
   <body>
@@ -34,10 +35,7 @@
       <div class="pomodoro-button-group">
         <button class="pomodoro-button" type="button">뽀모도로 시작</button>
       </div>
-      <div class="transition-button-group">
-        <button class="transition-focus-button">집중 모드로 전환</button>
-        <button class="transition-break-button">휴식 모드로 전환</button>
-      </div>
+
       <div class="pomodoro-setting-container">
         <div class="pomodoro-setting">
           <p class="pomodoro-setting-title">집중 시간</p>
@@ -92,13 +90,20 @@
 
     <main class="todo">
       <form class="todo-form">
-        <input type="text" placeholder="할 일을 입력하세요." />
+        <input  class="todo-input" type="text" placeholder="할 일을 입력하세요." />
         <button class="todo-button" type="submit">등록</button>
       </form>
       <p class="alert-text">입력창에 텍스트를 입력해주세요.</p>
       
-      <ul></ul>      
+      <ul class="todo-ul"></ul>      
     </main>
+
+    <footer role="contentinfo">
+      <span class="icons-license">
+        Icons by&nbsp; <a href="https://icons8.kr/" target="_blank">icons8</a>
+      </span>
+    </footer>
+    
+    <script src="./app.js"></script>
   </body>
-  <script src="./app.js"></script>
 </html>
