@@ -1,5 +1,5 @@
 # 뽀모도로 타이머
-![뽀모도로](https://github.com/yooseohyeon/pomodoro-timer/blob/main/%EB%BD%80%EB%AA%A8%EB%8F%84%EB%A1%9C.png)
+![image](https://github.com/user-attachments/assets/84b35ba9-40b6-4292-857e-9ad41b71ea9e)
 URL: <https://yooseohyeon.github.io/pomodoro-timer/>
 
 
