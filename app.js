@@ -125,7 +125,7 @@ function handleEnd() {
   updateTimerDisplay(focusTime, 0); 
 
   pomodoroBtn.style.display = 'flex';
-  pomodoroBtn.innerText = '뽀모도로 시작';
+  pomodoroBtn.innerText = '집중 시작';
   pomodoroBtn.style.backgroundColor = '#E74C3C';
 
   if (pomodoroEndBtn) pomodoroEndBtn.style.display = 'none';
@@ -249,7 +249,7 @@ function transitionToLongBreak() {
 // 버튼 전체
 function toggleTimer(event) {
   switch (event.target.innerText) {
-    case '뽀모도로 시작':
+    case '집중 시작':
       handleStart();
       break;
     case '일시 중지':
