@@ -16,8 +16,8 @@ let shortBreakTime = 5;
 let longBreakTime = 15;
 let longBreakInterval = 4;
 
-let autoBreakStart = JSON.parse(localStorage.getItem('autoBreakStart')); 
-let autoNextPomodoroStart = JSON.parse(localStorage.getItem('autoNextPomodoroStart')); 
+let autoBreakStart = JSON.parse(localStorage.getItem('autoBreakStart')) ?? true; 
+let autoNextPomodoroStart = JSON.parse(localStorage.getItem('autoNextPomodoroStart')) ?? true;
 
 let completedCycles = 0;
 
@@ -335,7 +335,7 @@ function closeModal() {
   modal.setAttribute('aria-hidden', 'true');
 }
 
-function getToggleChecked() {
+function saveSettings() {
   localStorage.setItem('autoBreakStart', toggles[0].checked);
   localStorage.setItem('autoNextPomodoroStart', toggles[1].checked);
 
@@ -343,10 +343,9 @@ function getToggleChecked() {
   autoNextPomodoroStart = JSON.parse(localStorage.getItem('autoNextPomodoroStart')); 
 }
 
-
 openModalBtn.addEventListener('click', openModal);
 closeModalBtn.addEventListener('click', closeModal);
-toggles.forEach(toggle => toggle.addEventListener('click', getToggleChecked));
+toggles.forEach(toggle => toggle.addEventListener('change', saveSettings));
 
 
 // TODO
