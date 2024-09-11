@@ -59,7 +59,7 @@ body {
 header {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   height: 53px;
 }
 
@@ -117,7 +117,7 @@ header {
   width: 560px;
   display: flex;
   justify-content: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 /* progress bar */
@@ -204,7 +204,7 @@ header {
   display: flex;
   justify-content: center;
   column-gap: 15px;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 
 .pomodoro-button {
@@ -251,9 +251,9 @@ header {
 */
 
 .pomodoro-setting-title {
-  margin-bottom: 5px;
-  font-size: 16px;
-  font-weight: 400;
+  margin-bottom: 7px;
+  font-size: 17px;
+  font-weight: 450;
   letter-spacing: -0.04em;
 }
 

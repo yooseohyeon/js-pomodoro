@@ -56,6 +56,12 @@ function focusTimer() {
     transitionToShortBreak();
     completedCycles++;
     pomodoroCycleGroup[completedCycles - 1].style.backgroundColor = '#242424';
+    if (longBreakInterval === completedCycles) {
+      transitionToLongBreak();
+      showLongBreakNotify();
+    } else {
+      showFocusNotify();
+    }
     return;
   }
 
@@ -140,7 +146,12 @@ function breakTimer() {
   if (minutes === 0 && seconds === 0) {
     handleEnd();
     if (autoNextPomodoroStart) handleStart();
-    if (longBreakInterval === completedCycles) transitionToLongBreak();
+    if (longBreakInterval === completedCycles) {
+      transitionToLongBreak();
+      showLongBreakNotify();
+    } else {
+      showBreakNotify();
+    }
     return;
   }
 
@@ -345,6 +356,27 @@ function saveSettings() {
 openModalBtn.addEventListener('click', openModal);
 closeModalBtn.addEventListener('click', closeModal);
 toggles.forEach(toggle => toggle.addEventListener('change', saveSettings));
+
+/* 알람 */
+Notification.requestPermission();
+
+function showFocusNotify() {
+  if (Notification.permission == 'granted') {
+    new Notification("집중 시간이 끝났습니다.", { body: `${shortBreakTime}분 동안 휴식을 취하세요.` });
+  }
+}
+
+function showBreakNotify() {
+  if (Notification.permission == 'granted') {
+    new Notification("휴식 시간이 끝났습니다.", { body: "다시 집중을 시작하세요." });
+  }
+}
+
+function showLongBreakNotify() {
+  if (Notification.permission == 'granted') {
+    new Notification(`${longBreakInterval}개의 뽀모도로를 완료했습니다!`, { body: `${longBreakTime}분 동안 휴식 시간을 가지세요.` });
+  }
+}
 
 
 // TODO
