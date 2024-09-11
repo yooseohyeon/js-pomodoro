@@ -49,10 +49,67 @@ input[type='number']::-webkit-inner-spin-button {
 }
 
 body {
-  padding: 205px 40px 0px;
+  padding: 40px 40px 0 40px;
   font-family: "Noto Sans KR", sans-serif;
   letter-spacing: -0.02em;
   background-color: #ffffff;
+}
+
+/* 헤더 */
+header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  height: 53px;
+}
+
+.page-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 560px;
+}
+
+.page-logo {
+  display: flex;
+  align-items: center;
+}
+
+.page-logo h1 {
+  font-size: 40px;
+  font-family: "Reddit Mono", sans-serif;
+  color: #E74C3C;
+}
+
+
+/* 설정 모달창 버튼 */
+.pomodoro-option-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  column-gap: 6px;
+
+  padding: 5px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: #e9e9e9;
+}
+
+.material-symbols-outlined {
+  width: 23px;
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24;
+  background-color: #00000000;
+}
+
+.pomodoro-option-container span {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  color: #434343;
 }
 
 /* 뽀모도로 */
@@ -61,25 +118,27 @@ body {
   flex-direction: column;
   align-items: center;
   margin-bottom: 100px;
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
 }
 
-.pomodoro-timer-container {
+/* 실행바, 타이머 숫자, 완료여부 표시 */
+.pomodoro-display-container {
+  width: 560px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  margin-bottom: 165px;
+  justify-content: center;
+  margin-bottom: 5px;
 }
 
 /* progress bar */
 .pomodoro-progress {
   position: absolute;
-  top: -150px;
-  z-index: -1;
-  width: 600px;
-  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 500px;
+  height: 500px;
 }
 
 .pomodoro-progress-background {
@@ -100,8 +159,17 @@ body {
   transform: rotate(-90deg);
 }
 
-
 /* 타이머 숫자 */
+.pomodoro-timer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 500px;
+  height: 500px;
+}
+
 .timer {
   display: flex;
   font-family: "Reddit Mono", monospace;
@@ -119,7 +187,7 @@ body {
   font-weight: 100;
 }
 
-/* 뽀모도로 사이클 완료 */
+/* 뽀모도로 사이클 완료여부 표시 */
 .pomodoro-cycle-group {
   display: flex;
   justify-content: center;
@@ -134,15 +202,23 @@ body {
   border: 1.5px solid #242424;
 }
 
-/* 뽀모도로 실행/중지 버튼 */
+/* 뽀모도로 동작 버튼, 뽀모도로 시간 설정 */
+.pomodoro-controls-container {
+  display: flex;
+  flex-direction: column;
+  width: 560px;
+}
+
+/* 동작 버튼 */
 .pomodoro-button-group {
   display: flex;
+  justify-content: center;
   column-gap: 15px;
+  margin-bottom: 30px;
 }
 
 .pomodoro-button {
   padding: 20px 60px;
-  margin-bottom: 50px;
   border-radius: 50px;
   white-space: nowrap;
   font-size: 20px;

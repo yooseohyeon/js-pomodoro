@@ -318,7 +318,7 @@ document.querySelector('.pomodoro-setting-container').addEventListener('input', 
 
 /* 뽀모도로 옵션 설정 모달 */
 const modal = document.querySelector('.pomodoro-option-modal');
-const openModalBtn = document.querySelector('.pomodoro-option');
+const openModalBtn = document.querySelector('.pomodoro-option-container');
 const closeModalBtn = document.querySelector('.modal-close-button');
 const toggles = document.querySelectorAll('.toggle-slider'); 
 

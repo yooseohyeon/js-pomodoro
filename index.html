@@ -13,81 +13,95 @@
     <title>뽀모도로</title>
   </head>
   <body>
-    <main class="pomodoro">
-      <div class="pomodoro-timer-container">
-        <svg class="pomodoro-progress">
-          <circle class="pomodoro-progress-background" cx="302" cy="245" r="240"></circle>
-          <circle class="pomodoro-progress-bar" cx="355" cy="302" r="240"></circle>
-        </svg>
-        <div class="timer">
-          <div class="min">25</div>
-          <div class="divider">:</div>
-          <div class="sec">00</div>
+    <header>
+      <div class="page-title">
+        <div class="page-logo">
+          <img width="48" height="48" src="https://img.icons8.com/color/48/tomato.png" alt="tomato"/>
+          <h1> PomoTodo </h1>    
         </div>
-        <div class="pomodoro-cycle-group">
-          <div class="pomodoro-cycle"></div>
-          <div class="pomodoro-cycle"></div>
-          <div class="pomodoro-cycle"></div>
-          <div class="pomodoro-cycle"></div>
-        </div> 
+        <button class="pomodoro-option-container">
+          <div class="material-symbols-outlined"> settings </div>
+          <span> 타이머 설정 </span>
+        </button> 
+      </div>
+    </header>
+
+    <main class="pomodoro">
+      <div class="pomodoro-display-container">
+        <svg class="pomodoro-progress">
+          <circle class="pomodoro-progress-background" cx="250" cy="250" r="240"></circle>
+          <circle class="pomodoro-progress-bar" cx="250" cy="250" r="240"></circle>
+
+          <div class="pomodoro-timer-container">
+            <div class="timer">
+              <div class="min">25</div>
+              <div class="divider">:</div>
+              <div class="sec">00</div>
+            </div>
+            <div class="pomodoro-cycle-group">
+              <div class="pomodoro-cycle"></div>
+              <div class="pomodoro-cycle"></div>
+              <div class="pomodoro-cycle"></div>
+              <div class="pomodoro-cycle"></div>
+            </div> 
+          </div>
+
+        </svg>
       </div>
       
-      <div class="pomodoro-button-group">
-        <button class="pomodoro-button" type="button">집중 시작</button>
-      </div>
-
-      <div class="pomodoro-setting-container">
-        <div class="pomodoro-setting">
-          <p class="pomodoro-setting-title">집중 시간</p>
-          <input class="pomodoro-setting-input focus-time-input" type="number" value="25" />
-          <span>분</span>
+      <div class="pomodoro-controls-container">
+        <div class="pomodoro-button-group">
+          <button class="pomodoro-button" type="button">집중 시작</button>
         </div>
-        <div class="pomodoro-setting">
-          <p class="pomodoro-setting-title">짧은 휴식 시간</p>
-          <input class="pomodoro-setting-input short-break-time-input" type="number" value="5" />
-          <span>분</span>
-        </div>
-        <div class="pomodoro-setting">
-          <p class="pomodoro-setting-title">긴 휴식 시간</p>
-          <input class="pomodoro-setting-input long-break-time-input" type="number" value="15" />
-          <span>분</span>
-        </div>
-        <div class="pomodoro-setting">
-          <p class="pomodoro-setting-title">긴 휴식 간격</p>
-          <input class="pomodoro-setting-input long-break-interval-input" type="number" value="4" />
-          <span>개</span>
+  
+        <div class="pomodoro-setting-container">
+          <div class="pomodoro-setting">
+            <p class="pomodoro-setting-title">집중 시간</p>
+            <input class="pomodoro-setting-input focus-time-input" type="number" value="25" />
+            <span>분</span>
+          </div>
+          <div class="pomodoro-setting">
+            <p class="pomodoro-setting-title">짧은 휴식 시간</p>
+            <input class="pomodoro-setting-input short-break-time-input" type="number" value="5" />
+            <span>분</span>
+          </div>
+          <div class="pomodoro-setting">
+            <p class="pomodoro-setting-title">긴 휴식 시간</p>
+            <input class="pomodoro-setting-input long-break-time-input" type="number" value="15" />
+            <span>분</span>
+          </div>
+          <div class="pomodoro-setting">
+            <p class="pomodoro-setting-title">긴 휴식 간격</p>
+            <input class="pomodoro-setting-input long-break-interval-input" type="number" value="4" />
+            <span>개</span>
+          </div>
         </div>
         
-        <div class="pomodoro-option-container pomodoro-option">
-          <span class="material-symbols-outlined pomodoro-option" aria-label="타이머 설정">
-            settings
-          </span>
-        </div>
       </div>
-
-      <section class="pomodoro-option-modal" role="dialog" aria-hidden="false">
-        <div class="modal-header">
-          <h2 class="modal-title">설정</h2>
-          <button class="modal-close-button" aria-label="모달창을 닫는 버튼">
-            <img src="assets/close.svg" alt=""/>
-          </button>
-        </div>
-        <hr class="modal-divider">
-        <div class="toggle-container">
-          <span class="toggle-label">자동으로 휴식 시작</span>
-          <input class="toggle-slider" role="switch" type="checkbox">
-        </div>
-        <div class="toggle-container">
-          <span class="toggle-label">자동으로 다음 뽀모도로 시작</span>
-          <input class="toggle-slider" role="switch" type="checkbox">
-        </div>
-        <!-- 
-        <div class="sound-option">
-          <p>사운드</p>
-        </div>
-      -->
-      </section>
     </main>
+
+    <section class="pomodoro-option-modal" role="dialog" aria-hidden="false">
+      <div class="modal-header">
+        <h2 class="modal-title">설정</h2>
+        <button class="modal-close-button" aria-label="모달창을 닫는 버튼">
+          <img src="assets/close.svg" alt=""/>
+        </button>
+      </div>
+      <hr class="modal-divider">
+      <div class="toggle-container">
+        <span class="toggle-label">자동으로 휴식 시작</span>
+        <input class="toggle-slider" role="switch" type="checkbox">
+      </div>
+      <div class="toggle-container">
+        <span class="toggle-label">자동으로 다음 뽀모도로 시작</span>
+        <input class="toggle-slider" role="switch" type="checkbox">
+      </div>
+      <!-- 
+      <div class="sound-option">
+        <p>사운드</p>
+      </div>
+    -->
+    </section>
 
     <main class="todo">
       <form class="todo-form">
