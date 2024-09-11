@@ -29,16 +29,13 @@ function updateTimerDisplay(minutes, seconds) {
 
 // progress bar
 function initializeProgressBar() {
-  const radius = progressCircle.r.baseVal.value;
-  const circumference = radius * 2 * Math.PI;
-
-  progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
-  progressCircle.style.strokeDashoffset = circumference;
-  
+  const circumference = progressCircle.r.baseVal.value * 2 * Math.PI;
   progressCircle.dataset.circumference = circumference;
+
+  progressCircle.style.strokeDashoffset = circumference;
 }
 
-function updateProgressBar(currentTime) {
+function updateProgressBar(totalDuration, currentTime) {
   const circumference = parseFloat(progressCircle.dataset.circumference);
   const progress = (totalDuration - currentTime) / totalDuration;
   const offset = circumference * (1 - progress);
@@ -71,8 +68,9 @@ function focusTimer() {
 
   updateTimerDisplay(minutes, seconds);
 
+  const totalDuration = focusTime * 60; 
   const currentTime = minutes * 60 + seconds;
-  updateProgressBar(currentTime);
+  updateProgressBar(totalDuration, currentTime);
 }
 
 // 타이머 종료 버튼 생성
@@ -95,7 +93,6 @@ function handleStart() {
 
   progressCircle.style.display = 'flex';
   progressCircle.style.stroke = '#E74C3C';
-  totalDuration = focusTime * 60; 
   initializeProgressBar();
 }
 
@@ -156,8 +153,9 @@ function breakTimer() {
 
   updateTimerDisplay(minutes, seconds);
 
+  const totalDuration = shortBreakTime * 60; 
   const currentTime = minutes * 60 + seconds;
-  updateProgressBar(currentTime);
+  updateProgressBar(totalDuration, currentTime);
 }
 
 // 휴식 버튼 생성
@@ -217,8 +215,9 @@ function longBreakTimer() {
 
   updateTimerDisplay(minutes, seconds);
 
+  const totalDuration = longBreakTime * 60; 
   const currentTime = minutes * 60 + seconds;
-  updateProgressBar(currentTime);
+  updateProgressBar(totalDuration, currentTime);
 }
 
 function createLongBreakButton() {
@@ -243,7 +242,7 @@ function transitionToLongBreak() {
   updateTimerDisplay(longBreakTime - 1, 59);
   timerInterval = setInterval(longBreakTimer, 1000);
 
-  transitionButtonClicked = false;
+  initializeProgressBar();
 }
 
 // 버튼 전체
