@@ -1,6 +1,6 @@
 # pomo-todo
 <img width="1268" alt="pomotodo" src="https://github.com/user-attachments/assets/e7686f72-d991-4b18-af5f-3828bf48ee7f">
-URL: <https://yooseohyeon.github.io/pomodoro-timer/> 
+URL: https://yooseohyeon.github.io/pomodoro-timer/
 
 
 ## 프로젝트 소개
