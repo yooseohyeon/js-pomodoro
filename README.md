@@ -1,11 +1,10 @@
-# 뽀모도로 타이머
-![image](https://github.com/user-attachments/assets/84b35ba9-40b6-4292-857e-9ad41b71ea9e)
-URL: <https://yooseohyeon.github.io/pomodoro-timer/> 
+# pomo-todo
+<img width="1268" alt="pomotodo" src="https://github.com/user-attachments/assets/e7686f72-d991-4b18-af5f-3828bf48ee7f">
+URL: https://yooseohyeon.github.io/pomodoro-timer/
 
 
 ## 프로젝트 소개
-- 자바스크립트 학습을 위해 뽀모도로 타이머 웹사이트를 만들어보았습니다. 
-- 뽀모도로 기법의 타이머 기능과 간단하게 할 일을 저장하고 삭제할 수 있는 todo 목록 기능을 추가했습니다.
+- 뽀모도로 타이머와 과 간단하게 할 일을 저장하고 삭제할 수 있는 todo 목록 기능을 제공하는 웹사이트 입니다.
 
 
 ## 주요 기능
@@ -23,7 +22,8 @@ URL: <https://yooseohyeon.github.io/pomodoro-timer/>
 
 |타이머 동작|
 |------|
-|![뽀모도로 타이머 동작](https://github.com/user-attachments/assets/96657472-f0d4-435b-bda3-35a25dc56789)|
+|![타이머 동작](https://github.com/user-attachments/assets/3c15414c-a903-4ab6-ac3b-a624c89cc8e7)|
+
   
 
 ### 3. 휴식 타이머
