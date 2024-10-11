@@ -49,7 +49,8 @@ input[type='number']::-webkit-inner-spin-button {
 }
 
 body {
-  padding: 40px 40px 0 40px;
+  width: 100%;
+  padding: 40px 40px 10px 40px;
   font-family: "Noto Sans KR", sans-serif;
   letter-spacing: -0.02em;
   background-color: #ffffff;
@@ -81,6 +82,10 @@ header {
   color: #E74C3C;
 }
 
+.page-logo img {
+  width: 48px;
+  height: 48px;
+}
 
 /* 설정 모달창 버튼 */
 .pomodoro-option-container {
@@ -97,7 +102,7 @@ header {
 
 .pomodoro-option-container span {
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 481;
   letter-spacing: -0.04em;
   color: #434343;
 }
@@ -112,12 +117,12 @@ header {
   height: 100%;
 }
 
-/* 실행바, 타이머 숫자, 완료여부 표시 */
+/* progress bar, 타이머 숫자, 완료여부 표시 */
 .pomodoro-display-container {
-  width: 560px;
+  width: 481px;
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 /* progress bar */
@@ -127,8 +132,8 @@ header {
   align-items: center;
   justify-content: center;
 
-  width: 500px;
-  height: 500px;
+  width: 481px;
+  height: 481px;
 }
 
 .pomodoro-progress-background {
@@ -141,12 +146,11 @@ header {
   fill: none;
   stroke: #E74C3C;
   stroke-width: 9;
-  stroke-dasharray: 1507.2;
-  stroke-dashoffset: 1507.2;
+  stroke-dasharray: 1480.88;
+  stroke-dashoffset: 1480.88;
   opacity: 0;
-  animation: progress 2s ease-in-out infinite;
-  transform-origin: center;
   transform: rotate(-90deg);
+  transform-origin: center;
 }
 
 /* 타이머 숫자 */
@@ -156,14 +160,14 @@ header {
   align-items: center;
   justify-content: center;
   position: relative;
-  width: 500px;
-  height: 500px;
+  width: 481px;
+  height: 481px;
 }
 
 .timer {
   display: flex;
   font-family: "Reddit Mono", monospace;
-  font-size: 145px;
+  font-size: 140px;
   font-weight: 250;
   letter-spacing: -0.06em;
   color: #202020;
@@ -239,16 +243,6 @@ header {
 .pomodoro-setting:nth-child(1) {
   border-width: 1px;
 }
-
-/*
-.pomodoro-setting {
-  width: 200px;
-  height: 95px;
-  padding: 20px 25px;
-  border-radius: 25px;
-  background-color: #ebebeb;
-}
-*/
 
 .pomodoro-setting-title {
   margin-bottom: 7px;
@@ -397,7 +391,7 @@ header {
   column-gap: 15px;
 }
 
-.todo-form input {
+.todo-input {
   width: 90%;
   padding: 10px 15px;
   border-radius: 8px;
@@ -456,3 +450,114 @@ header {
 .icons-license a {
   display: block;
 }
+
+@media screen and (max-width: 480px) { 
+  body {
+    padding: 10px;
+  }
+
+  /* header */
+  header {
+    margin: 10px 10px 20px 10px;
+  }
+
+  .page-title {
+    width: 100%;
+  }
+
+  .page-logo h1 {
+    font-size: 30px;
+  }
+
+  .page-logo img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .pomodoro-option-container {
+    padding: 5px 10px;
+    background-color: #00000000;
+  }
+
+  .pomodoro-option-container img {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* timer */
+  .pomodoro-display-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+  }
+
+  /* progress bar */
+  .pomodoro-progress {
+    width: 100%;
+    height: 100%;
+  }
+
+  .pomodoro-progress-background {
+    stroke-width: 7;
+  }
+  
+  .pomodoro-progress-bar {
+    stroke-width: 7;
+  }
+
+  /* 타이머 숫자 */
+  .pomodoro-timer-container {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+  }
+
+  .timer {
+    font-size: 110px;
+  }
+
+  .divider {
+    padding: 0 15px;
+  }
+
+  /* 버튼, 타이머 설정 */
+  .pomodoro-controls-container {
+    width: 100%;
+  }
+
+  .pomodoro-button {
+    padding: 20px 50px;
+    font-size: 17px;
+  }
+
+  .pomodoro-setting-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pomodoro-setting {
+    width: 100%;
+    border-width: 1px 1px 0 1px;
+  }
+
+  .pomodoro-setting:nth-child(1) {
+    border-width: 1px 1px 0 1px;
+  }
+
+  .pomodoro-setting:nth-child(4) {
+    border-width: 1px;
+  }
+
+  /* todo */
+  .todo-form input {
+    padding: 13px 13px 13px 15px;
+    width: 100%;
+    font-size: 15px;
+  }
+
+  .todo-form button {
+    padding: 25px 0;
+    font-size: 15px;
+  }
+} 

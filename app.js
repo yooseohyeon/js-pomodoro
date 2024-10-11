@@ -2,7 +2,8 @@ const min = document.querySelector('.min');
 const sec = document.querySelector('.sec');
 const pomodoroBtnGroup = document.querySelector('.pomodoro-button-group');
 const pomodoroBtn = document.querySelector('.pomodoro-button:first-of-type');
-const progressCircle = document.querySelector('.pomodoro-progress-bar'); 
+const progressContainer = document.querySelector('.pomodoro-progress');
+const progressBar = document.querySelector('.pomodoro-progress-bar'); 
 const pomodoroCycleGroup = document.getElementsByClassName("pomodoro-cycle");
 
 let timerInterval = null;
@@ -29,21 +30,25 @@ function updateTimerDisplay(minutes, seconds) {
 
 // progress bar
 function initializeProgressBar() {
-  const circumference = progressCircle.r.baseVal.value * 2 * Math.PI;
-  progressCircle.dataset.circumference = circumference;
+  const radius = Math.min(progressContainer.clientWidth, progressContainer.clientHeight) * 0.49;
+  const circumference = radius * 2 * Math.PI;
+  
+  progressBar.dataset.circumference = circumference;
 
-  progressCircle.style.strokeDashoffset = circumference;
+  progressBar.style.strokeDasharray = circumference;
+  progressBar.style.strokeDashoffset = circumference; 
 }
 
 function updateProgressBar(totalDuration, currentTime) {
-  const circumference = parseFloat(progressCircle.dataset.circumference);
+  const circumference = parseFloat(progressBar.dataset.circumference);
   const progress = (totalDuration - currentTime) / totalDuration;
   const offset = circumference * (1 - progress);
 
-  progressCircle.style.strokeDashoffset = offset;
-  progressCircle.style.opacity = 100;
+  progressBar.style.strokeDashoffset = offset;
+  progressBar.style.opacity = 100;
 }
 
+window.addEventListener('resize', initializeProgressBar);
 
 // 집중 타이머
 function focusTimer() {
@@ -97,8 +102,8 @@ function handleStart() {
   pomodoroBtn.innerText = '일시 중지';
   pomodoroBtn.style.backgroundColor = '#747474';
 
-  progressCircle.style.display = 'flex';
-  progressCircle.style.stroke = '#E74C3C';
+  progressBar.style.display = 'flex';
+  progressBar.style.stroke = '#E74C3C';
   initializeProgressBar();
 }
 
@@ -134,7 +139,7 @@ function handleEnd() {
   if (pomodoroEndBtn) pomodoroEndBtn.style.display = 'none';
   if (breakBtn) breakBtn.style.display = 'none';
   if (longBreakBtn) longBreakBtn.style.display = 'none';
-  if (progressCircle.style.display === 'flex') progressCircle.style.display = 'none';
+  if (progressBar.style.display === 'flex') progressBar.style.display = 'none';
 }
 
 
@@ -184,8 +189,8 @@ function transitionToShortBreak() {
   !breakBtn ? breakBtn = createShortBreakButton() : breakBtn.style.display = 'inline-block';
   pomodoroBtn.style.display = 'none';
 
-  progressCircle.style.display = 'flex';
-  progressCircle.style.stroke = '#2ECC71';
+  progressBar.style.display = 'flex';
+  progressBar.style.stroke = '#2ECC71';
 
   if (autoBreakStart) {
     handleBreakStart();
@@ -246,8 +251,8 @@ function transitionToLongBreak() {
   pomodoroBtn.style.display = 'none';
   breakBtn.style.display = 'none';
 
-  progressCircle.style.display = 'flex';
-  progressCircle.style.stroke = '#209ad7';
+  progressBar.style.display = 'flex';
+  progressBar.style.stroke = '#209ad7';
 
   clearInterval(timerInterval);
   updateTimerDisplay(longBreakTime - 1, 59);
@@ -378,6 +383,20 @@ function showLongBreakNotify() {
   }
 }
 
+// 반응형 - 모바일 사이즈에서는 '타이머 설정' 글자 안 보이게 하기
+const timerOptionText = document.querySelector('.pomodoro-option-container span');
+
+function TimerOptionTextVisibility() {
+  if (window.innerWidth <= 480) {
+    timerOptionText.style.display = 'none';
+  } else {
+    timerOptionText.style.display = 'inline';
+  } 
+}
+
+TimerOptionTextVisibility();
+
+window.addEventListener('resize', TimerOptionTextVisibility);
 
 // TODO
 const form = document.querySelector('.todo-form');

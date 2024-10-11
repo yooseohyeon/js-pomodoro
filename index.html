@@ -15,7 +15,7 @@
     <header>
       <div class="page-title">
         <div class="page-logo">
-          <img width="48" height="48" src="https://img.icons8.com/color/48/tomato.png" alt=""/>
+          <img src="https://img.icons8.com/color/48/tomato.png" alt=""/>
           <h1 lang="en"> PomoTodo </h1>    
         </div>
         <button class="pomodoro-option-container">
@@ -27,25 +27,23 @@
 
     <main class="pomodoro">
       <div class="pomodoro-display-container">
-        <svg class="pomodoro-progress">
-          <circle class="pomodoro-progress-background" cx="250" cy="250" r="240"></circle>
-          <circle class="pomodoro-progress-bar" cx="250" cy="250" r="240"></circle>
-
-          <div class="pomodoro-timer-container">
-            <div class="timer">
-              <div class="min">25</div>
-              <div class="divider">:</div>
-              <div class="sec">00</div>
-            </div>
-            <div class="pomodoro-cycle-group">
-              <div class="pomodoro-cycle"></div>
-              <div class="pomodoro-cycle"></div>
-              <div class="pomodoro-cycle"></div>
-              <div class="pomodoro-cycle"></div>
-            </div> 
-          </div>
-
+        <svg class="pomodoro-progress" preserveAspectRatio="xMidYMid meet">
+          <circle class="pomodoro-progress-background" cx="50%" cy="50%" r="49%"></circle>
+          <circle class="pomodoro-progress-bar" cx="50%" cy="50%" r="49%"></circle>
         </svg>
+        <div class="pomodoro-timer-container">
+          <div class="timer">
+            <div class="min">25</div>
+            <div class="divider">:</div>
+            <div class="sec">00</div>
+          </div>
+          <div class="pomodoro-cycle-group">
+            <div class="pomodoro-cycle"></div>
+            <div class="pomodoro-cycle"></div>
+            <div class="pomodoro-cycle"></div>
+            <div class="pomodoro-cycle"></div>
+          </div> 
+        </div>
       </div>
       
       <div class="pomodoro-controls-container">
@@ -104,7 +102,7 @@
 
     <main class="todo">
       <form class="todo-form">
-        <input  class="todo-input" type="text" placeholder="할 일을 입력하세요." />
+        <input class="todo-input" type="text" placeholder="할 일을 입력하세요." />
         <button class="todo-button" type="submit">등록</button>
       </form>
       <p class="alert-text">입력창에 텍스트를 입력해주세요.</p>
